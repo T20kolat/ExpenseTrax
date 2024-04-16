@@ -1,3 +1,6 @@
+using ExpenseTrax.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace ExpenseTrax
 {
     public class Program
@@ -8,6 +11,9 @@ namespace ExpenseTrax
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
 
             var app = builder.Build();
 
